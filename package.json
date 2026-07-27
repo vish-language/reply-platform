@@ -1,0 +1,20 @@
+{
+  "name": "reply-platform",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "dev": "echo \"Run applications individually\"",
+    "lint": "echo \"Lint all workspaces\"",
+    "test": "echo \"Run all tests\"",
+    "format": "echo \"Format all workspaces\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
