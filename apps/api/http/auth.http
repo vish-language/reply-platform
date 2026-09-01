@@ -1,0 +1,270 @@
+### Health checkup
+GET http://localhost:5000/api/v1/auth/health
+### Register User
+
+
+POST http://localhost:5000/api/v1/auth/register
+Content-Type: application/json
+
+{
+  "name": "x Test User",
+  "email": "x-test@example.com",
+  "password": "xyz@1234!",
+  "organizationName": "x  y Company"
+}
+### Login User
+POST http://localhost:5000/api/v1/auth/login
+Content-Type: application/json
+
+{
+  "email": "priya@gmail.com",
+  "password": "Priya@123"
+}
+
+### Get User Profile
+GET http://localhost:5000/api/v1/auth/me
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjbXQybGFycGgwMDAwZWdpOWtpeHc0Y3Q5Iiwib3JnYW5pemF0aW9uSWQiOiJjbXQybGFycHIwMDAxZWdpOTNzbjg4anI1IiwiaWF0IjoxNzg3NTA1ODAxLCJleHAiOjE3ODgxMTA2MDF9.JKFIuxgMio-b6RNcZW5FosgsxpOM0Wowow3tBq_tbtE
+
+### Get Current Organization
+GET http://localhost:5000/api/v1/organization/current
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjbXNuMWRmNXQwMDBnd3dpOW1pYTBjb2ZpIiwiaWF0IjoxNzg2MzU1MjU1LCJleHAiOjE3ODY5NjAwNTV9.uolTCZhP6C4Sfj1HQH7_7gCZjElW8XkzyYoYoqptqu0
+
+
+
+### Update Current Organization
+PATCH  http://localhost:5000/api/v1/organization/current
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjbXNpenB6N2YwMDAzZ2dpOTBqYmZ0aHhsIiwiaWF0IjoxNzg2MTMzNDE2LCJleHAiOjE3ODY3MzgyMTZ9.Au5hojkyBgtAFNald8kpHHVKRGL983Yeu-8QXIK_N1g
+Content-Type: application/json
+
+{
+  "name": "sachin Paradise Hotel",
+  "isActive": true
+}
+
+### post member
+
+POST http://localhost:5000/api/v1/members
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjbXNuMmZkeHQwMDAwNTBpOXVubXM0Z3hxIiwiaWF0IjoxNzg2MzU2Nzg4LCJleHAiOjE3ODY5NjE1ODh9.dN4BZx5L6IIhAdiJfsS7YctzsfwcbWNUC1RbDVXrP1Q
+Content-Type: application/json
+
+{
+  "email": "rbac.member@test.com",
+  "role": "MEMBER"
+}
+
+### get members
+GET http://localhost:5000/api/v1/members
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjbXNrcTNpcDUwMDAzdDRpOXZvbjVocWVmIiwiaWF0IjoxNzg2MjE0Nzg5LCJleHAiOjE3ODY4MTk1ODl9.T1MQP7FlcARXLszlUMowNrlZ9O85hWsEXVUgNBG974Y
+
+### update member role
+PATCH http://localhost:5000/api/v1/members/cmskqg5f20009t4i92s5hapmt
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjbXNrcTNpcDUwMDAzdDRpOXZvbjVocWVmIiwiaWF0IjoxNzg2MjE0Nzg5LCJleHAiOjE3ODY4MTk1ODl9.T1MQP7FlcARXLszlUMowNrlZ9O85hWsEXVUgNBG974Y
+Content-Type: application/json
+
+{
+  "role": "ADMIN"
+}
+
+### delete member
+DELETE http://localhost:5000/api/v1/members/cmskqg5f20009t4i92s5hapmt
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjbXNrcTNpcDUwMDAzdDRpOXZvbjVocWVmIiwiaWF0IjoxNzg2MjE0Nzg5LCJleHAiOjE3ODY4MTk1ODl9.T1MQP7FlcARXLszlUMowNrlZ9O85hWsEXVUgNBG974Y
+
+### Get AI Settings
+
+GET http://localhost:5000/api/v1/ai-settings
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjbXQxZTh5NTMwMDAwc2dpOWU0ajFjbG52Iiwib3JnYW5pemF0aW9uSWQiOiJjbXQxZTh5NW4wMDAxc2dpOWFjM3hzMng4IiwiaWF0IjoxNzg3MzEwODI3LCJleHAiOjE3ODc5MTU2Mjd9.bXDYKZ8I4avNSKdjWFkOoPlaDhLhPuhBMObhhIBAXGg
+### Update AI Settings
+### Disable automatic replies
+
+PATCH http://localhost:5000/api/v1/ai-settings
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjbXNuMnNhdm4wMDA4NTBpOTNpdTBxcHFxIiwiaWF0IjoxNzg2MzU3MTQxLCJleHAiOjE3ODY5NjE5NDF9.THdSyDYL0fgMa7KZZf0payB4JufYVh_yPB9b-iTONvU
+Content-Type: application/json
+
+{
+  "tone": "friendly"
+}
+
+### Post Comment
+
+### 4. Create Comment With AI
+
+POST http://localhost:5000/api/v1/comments
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjbXQybGFycGgwMDAwZWdpOWtpeHc0Y3Q5Iiwib3JnYW5pemF0aW9uSWQiOiJjbXQybGFycHIwMDAxZWdpOTNzbjg4anI1IiwiaWF0IjoxNzg3NTEwODgwLCJleHAiOjE3ODgxMTU2ODB9.9GCF7pWCzcCrFmZgknmdBtxbNA_xNuJFjOxTTQfpaO4
+Content-Type: application/json
+
+{
+  "authorName":"Nikhil",
+  "authorEmail":"Nikhil@test.com",
+  "content":"Food is grate but the service is not good and the waiter is not handsonme "
+}
+
+### Get Comments
+GET http://localhost:5000/api/v1/comments
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjbXQybGFycGgwMDAwZWdpOWtpeHc0Y3Q5Iiwib3JnYW5pemF0aW9uSWQiOiJjbXQybGFycHIwMDAxZWdpOTNzbjg4anI1IiwiaWF0IjoxNzg3Mjk1MDIzLCJleHAiOjE3ODc4OTk4MjN9.stzGy81DKHf7BKp7eAjVkpD8fLjVbIYeBrlBgEARnv4
+
+
+
+### Create Reply
+
+POST http://localhost:5000/api/v1/replies
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjbXQybGFycGgwMDAwZWdpOWtpeHc0Y3Q5Iiwib3JnYW5pemF0aW9uSWQiOiJjbXQybGFycHIwMDAxZWdpOTNzbjg4anI1IiwiaWF0IjoxNzg3Mjk1MDIzLCJleHAiOjE3ODc4OTk4MjN9.stzGy81DKHf7BKp7eAjVkpD8fLjVbIYeBrlBgEARnv4
+Content-Type: application/json
+
+{
+  "commentId": "cmt2lh2360006egi9pzext8gu",
+  "content": "i am very thank full to you"
+}
+
+### generate the reply from the ai
+POST http://localhost:5000/api/v1/ai/generate
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjbXQxZTh5NTMwMDAwc2dpOWU0ajFjbG52Iiwib3JnYW5pemF0aW9uSWQiOiJjbXQxZTh5NW4wMDAxc2dpOWFjM3hzMng4IiwiaWF0IjoxNzg3MzEwODI3LCJleHAiOjE3ODc5MTU2Mjd9.bXDYKZ8I4avNSKdjWFkOoPlaDhLhPuhBMObhhIBAXGg
+Content-Type: application/json
+
+{
+  "comment":"Amazing customer service!"
+}
+
+### Get Replies For Comment
+
+GET http://localhost:5000/api/v1/replies/comment/cmsmb94t80000coi9agrr14le
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjbXNrcTR5N3MwMDA2dDRpOXdpb2lhd2gzIiwiaWF0IjoxNzg2MzEwNTk5LCJleHAiOjE3ODY5MTUzOTl9.iQO3g_6c-mZJi0IuZISCOtXFKauXU-7l12lg_fYKQNc
+
+### Connect Google Review
+
+POST http://localhost:5000/api/v1/google-reviews/connect
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjbXQybGFycGgwMDAwZWdpOWtpeHc0Y3Q5Iiwib3JnYW5pemF0aW9uSWQiOiJjbXQybGFycHIwMDAxZWdpOTNzbjg4anI1IiwiaWF0IjoxNzg3MzEyNTM4LCJleHAiOjE3ODc5MTczMzh9.LjKACPzy1ZysJilDr8nDvfCmUcfBG9u9qDIM8qbjY7E
+Content-Type: application/json
+
+{
+  "locationId": "test-location-001",
+  "accountEmail": "google.test@test.com",
+  "accessToken": "test-access-token-001",
+  "refreshToken": "test-refresh-token-001",
+  "webhookSecret": "test-secret-001"
+}
+
+### test webhook
+
+POST http://localhost:5000/api/v1/google-reviews/test-webhook
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjbXNyd2x5anMwMDAwa2NpOThvOGQyOXhhIiwib3JnYW5pemF0aW9uSWQiOiJjbXNyd2x5azcwMDAxa2NpOXYybjhscXB4IiwiaWF0IjoxNzg2NjQ5MTc5LCJleHAiOjE3ODcyNTM5Nzl9.Cyz9UBLtQFP2GOXo6qnhKLNqlGYDr9RRz9S3fXG5Bdk
+Content-Type: application/json
+
+{
+  "externalCommentId": "limit-test-001",
+  "googleReviewName": "accounts/test/locations/test/reviews/limit-test-001",
+  "authorName": "Limit Tester",
+  "authorEmail": "limit@test.com",
+  "content": "Excellent service!",
+  "rating": 5
+}
+### webhook
+POST http://localhost:5000/api/v1/google-reviews/webhook
+Content-Type: application/json
+x-google-signature: bbf94dbbdcedbf985ce4852dc2929cd19f628f4c64d6a85691d98a1867ace433
+
+{
+  "reviewId": "test-review-003",
+  "locationId": "test-location-001",
+  "authorName": "David",
+  "authorEmail": "david@test.com",
+  "content": "Amazing support. The team solved my problem quickly."
+}
+
+
+### disconnect google review
+PATCH http://localhost:5000/api/v1/google-reviews/disconnect
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjbXNuMmZkeHQwMDAwNTBpOXVubXM0Z3hxIiwiaWF0IjoxNzg2MzkyNjEwLCJleHAiOjE3ODY5OTc0MTB9.O-rVMUjdzFinPfO98tAIGePqUzmIBJSHF50JS7M4MwI
+
+### 
+
+POST http://localhost:5000/api/v1/google-reviews/sync
+Content-Type: application/json
+
+{
+  "locationId": "test-location-001"
+}
+
+### get comment by id
+
+GET http://localhost:5000/api/v1/comments/cmsq9fv24000028i9hgssciwf
+
+
+
+### replies list
+
+GET http://localhost:5000/api/v1/comments
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjbXQybGFycGgwMDAwZWdpOWtpeHc0Y3Q5Iiwib3JnYW5pemF0aW9uSWQiOiJjbXQybGFycHIwMDAxZWdpOTNzbjg4anI1IiwiaWF0IjoxNzg3Mjk1MDIzLCJleHAiOjE3ODc4OTk4MjN9.stzGy81DKHf7BKp7eAjVkpD8fLjVbIYeBrlBgEARnv4
+
+###
+
+
+GET http://localhost:5000/api/v1/comments?page=1&limit=5
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjbXQybGFycGgwMDAwZWdpOWtpeHc0Y3Q5Iiwib3JnYW5pemF0aW9uSWQiOiJjbXQybGFycHIwMDAxZWdpOTNzbjg4anI1IiwiaWF0IjoxNzg3MzEyNTM4LCJleHAiOjE3ODc5MTczMzh9.LjKACPzy1ZysJilDr8nDvfCmUcfBG9u9qDIM8qbjY7E
+
+
+### get analytics 
+GET http://localhost:5000/api/v1/analytics
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjbXQybGFycGgwMDAwZWdpOWtpeHc0Y3Q5Iiwib3JnYW5pemF0aW9uSWQiOiJjbXQybGFycHIwMDAxZWdpOTNzbjg4anI1IiwiaWF0IjoxNzg3MzEyNTM4LCJleHAiOjE3ODc5MTczMzh9.LjKACPzy1ZysJilDr8nDvfCmUcfBG9u9qDIM8qbjY7E
+
+### get subscription
+GET http://localhost:5000/api/v1/subscription
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjbXQybGFycGgwMDAwZWdpOWtpeHc0Y3Q5Iiwib3JnYW5pemF0aW9uSWQiOiJjbXQybGFycHIwMDAxZWdpOTNzbjg4anI1IiwiaWF0IjoxNzg3NTA1ODAxLCJleHAiOjE3ODgxMTA2MDF9.JKFIuxgMio-b6RNcZW5FosgsxpOM0Wowow3tBq_tbtE
+
+### get plans 
+GET http://localhost:5000/api/v1/subscription/plans
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjbXQybGFycGgwMDAwZWdpOWtpeHc0Y3Q5Iiwib3JnYW5pemF0aW9uSWQiOiJjbXQybGFycHIwMDAxZWdpOTNzbjg4anI1IiwiaWF0IjoxNzg3NTA1ODAxLCJleHAiOjE3ODgxMTA2MDF9.JKFIuxgMio-b6RNcZW5FosgsxpOM0Wowow3tBq_tbtE
+
+
+### upgrade the plan
+POST /api/v1/subscriptions/upgrade
+
+
+### create the subscription 
+POST http://localhost:5000/api/v1/billing/create-subscription
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjbXQ4d3Z6emowMDA2a3NpOTc4N3psNDV3Iiwib3JnYW5pemF0aW9uSWQiOiJjbXQ4d3Z6enAwMDA3a3NpOWt3YnRxbWd1IiwiaWF0IjoxNzg3Njc3Mjg5LCJleHAiOjE3ODgyODIwODl9.YnL49iZoCXiOVO_MYmGm2d6Z2yc6eY5BKkCfbVZGebw
+Content-Type: application/json
+
+{
+  "planId": "cmsrrrvts0002poi98mt81g1g"
+}
+### verify the subscription
+POST http://localhost:5000/api/v1/billing/verify-payment
+###
+GET http://localhost:5000/api/v1/billing/check-plan/plan_TThahmyqsFjvkG
+
+### test webhook endpoint
+POST https://chapters-maintenance-identified-hometown.trycloudflare.com/api/v1/billing/webhooks/razorpay
+Content-Type: application/json
+x-razorpay-event-id: test-event-003
+x-razorpay-signature: test-signature
+
+{
+  "entity": "event",
+  "event": "payment.captured",
+  "payload": {
+    "payment": {
+      "entity": {
+        "id": "pay_test",
+        "order_id": "order_test",
+        "amount": 99900,
+        "currency": "INR"
+      }
+    }
+  }
+}
+### get the payment details 
+GET http://localhost:5000/api/v1/billing/payments
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjbXRiYXN0bHcwMDAwZzRpOTF2b3RuanNoIiwib3JnYW5pemF0aW9uSWQiOiJjbXRiYXN0bTcwMDAxZzRpOXVnbGI3ejR4IiwiaWF0IjoxNzg4MDE5NjA0LCJleHAiOjE3ODg2MjQ0MDR9.nCa_Yw9bWrIw6eW9P1AbMysyuJDC-74CWQmxujLmd5U
+
+### get the email invitations right
+GET http://localhost:5000/api/v1/invitations/d4d84805aa45baadfbdb2cc396ffc4469f99a34a8b2659af378790ba93547c8a
+
+### accept invitations 
+POST http://localhost:5000/api/v1/auth/accept-invitation
+Content-Type: application/json
+
+{
+  "token": "d4d84805aa45baadfbdb2cc396ffc4469f99a34a8b2659af378790ba93547c8a",
+  "name": "Vishal",
+  "password": "TestPassword123!"
+}

@@ -1,0 +1,278 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+model User {
+  id           String       @id @default(cuid())
+  email        String       @unique
+  passwordHash String
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+  name         String
+  memberships  Membership[]
+
+  @@map("users")
+}
+
+model Organization {
+  id                String             @id @default(cuid())
+  name              String
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+  isActive          Boolean            @default(true)
+  slug              String             @unique
+  aiSettings        AISettings?
+  billingAccount    BillingAccount?
+  comments          Comment[]
+  googleIntegration GoogleIntegration?
+  memberships       Membership[]
+  subscription      Subscription?
+  usage             Usage[]
+  payments          Payment[]
+  invitations       Invitation[]
+
+  @@map("organizations")
+}
+
+model Membership {
+  id             String           @id @default(cuid())
+  userId         String
+  organizationId String
+  role           MembershipRole
+  status         MembershipStatus @default(PENDING)
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+  organization   Organization     @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  user           User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, organizationId])
+  @@index([organizationId], map: "memberships_organizationId_fkey")
+  @@map("memberships")
+}
+
+model AISettings {
+  id               String       @id @default(cuid())
+  organizationId   String       @unique
+  autoReplyEnabled Boolean      @default(true)
+  tone             String       @default("professional")
+  language         String       @default("English")
+  instructions     String?      @db.Text
+  createdAt        DateTime     @default(now())
+  updatedAt        DateTime     @updatedAt
+  organization     Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  @@map("ai_settings")
+}
+
+model Comment {
+  id                String        @id @default(cuid())
+  organizationId    String
+  externalCommentId String?
+  authorName        String
+  authorEmail       String?
+  content           String        @db.Text
+  status            CommentStatus @default(PENDING)
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
+  googleReviewName  String?
+  rating            Int?
+  organization      Organization  @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  replies           Reply[]
+
+  @@unique([organizationId, externalCommentId])
+  @@index([organizationId])
+  @@index([organizationId, status])
+  @@map("comments")
+}
+
+model Reply {
+  id          String      @id @default(cuid())
+  commentId   String
+  content     String      @db.Text
+  status      ReplyStatus @default(PENDING)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  generatedBy String?
+  modelName   String?
+  comment     Comment     @relation(fields: [commentId], references: [id], onDelete: Cascade)
+
+  @@index([commentId])
+  @@map("replies")
+}
+
+model GoogleIntegration {
+  id              String       @id @default(cuid())
+  organizationId  String       @unique
+  locationId      String
+  accountEmail    String?
+  accessToken     String       @db.Text
+  refreshToken    String?      @db.Text
+  expiresAt       DateTime?
+  isActive        Boolean      @default(true)
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+  webhookSecret   String?
+  googleAccountId String?
+  organization    Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  @@map("google_integrations")
+}
+
+model Plan {
+  id              String           @id @default(cuid())
+  name            String           @unique
+  price           Float
+  maxReviews      Int
+  maxReplies      Int
+  features        Json?
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  razorpayPlanId  String?          @unique
+  subscriptions   Subscription[]
+  billingAccounts BillingAccount[]
+
+  @@map("plans")
+}
+
+model Subscription {
+  id                String             @id @default(cuid())
+  organizationId    String             @unique
+  planId            String
+  status            SubscriptionStatus @default(TRIAL)
+  startDate         DateTime           @default(now())
+  endDate           DateTime?
+  cancelAtPeriodEnd Boolean            @default(false)
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+  organization      Organization       @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  plan              Plan               @relation(fields: [planId], references: [id])
+
+  @@index([planId], map: "subscriptions_planId_fkey")
+  @@map("subscriptions")
+}
+
+model Usage {
+  id                 String       @id @default(cuid())
+  organizationId     String
+  month              String
+  reviewsProcessed   Int          @default(0)
+  aiRepliesGenerated Int          @default(0)
+  createdAt          DateTime     @default(now())
+  updatedAt          DateTime     @updatedAt
+  organization       Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  @@unique([organizationId, month])
+  @@map("usage")
+}
+
+model BillingAccount {
+  id                     String       @id @default(cuid())
+  organizationId         String       @unique
+  createdAt              DateTime     @default(now())
+  updatedAt              DateTime     @updatedAt
+  razorpayCustomerId     String?      @unique
+  razorpaySubscriptionId String?      @unique
+  razorpayOrderId        String?      @unique
+  razorpayPaymentId      String?      @unique
+  planId                 String?
+  plan                   Plan?        @relation(fields: [planId], references: [id])
+  organization           Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  @@map("billing_accounts")
+}
+
+enum MembershipRole {
+  OWNER
+  ADMIN
+  MANAGER
+  MEMBER
+}
+
+enum MembershipStatus {
+  PENDING
+  ACTIVE
+  SUSPENDED
+}
+
+enum CommentStatus {
+  PENDING
+  PROCESSING
+  REPLIED
+  FAILED
+}
+
+enum ReplyStatus {
+  PENDING
+  GENERATED
+  PUBLISHED
+  FAILED
+}
+
+enum SubscriptionStatus {
+  ACTIVE
+  CANCELLED
+  EXPIRED
+  TRIAL
+}
+
+model Payment {
+  id String @id @default(cuid())
+
+  organizationId String
+
+  razorpayPaymentId String @unique
+
+  razorpayOrderId String @unique
+
+  amount Float
+
+  currency String
+
+  status PaymentStatus
+
+  createdAt DateTime @default(now())
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  @@map("payments")
+}
+
+enum PaymentStatus {
+  SUCCESS
+
+  FAILED
+
+  PENDING
+}
+
+model WebhookEvent {
+  id        String   @id @default(cuid())
+  eventId   String   @unique
+  event     String
+  createdAt DateTime @default(now())
+
+  @@map("webhook_events")
+}
+
+model Invitation {
+  id             String         @id @default(cuid())
+  organizationId String
+  email          String
+  name           String
+  role           MembershipRole
+  token          String         @unique
+  expiresAt      DateTime
+  acceptedAt     DateTime?
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  @@index([email])
+  @@index([organizationId])
+  @@map("invitations")
+}

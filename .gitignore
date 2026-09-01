@@ -1,29 +1,36 @@
 # Dependencies
 node_modules/
+.pnpm-store/
 
 # Environment variables
 .env
 .env.*
-
 !.env.example
-
-# Logs
-logs/
-*.log
 
 # Build output
 dist/
 build/
+.vite/
 
-# Coverage
-coverage/
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
 
 # IDE
 .vscode/
 .idea/
 
-# macOS
-.DS_Store
+# Test / coverage
+coverage/
 
-# Windows
-Thumbs.db
+# Prisma generated files
+prisma/generated/
+
+# Documentation / private project docs
+docs/
