@@ -1,0 +1,1 @@
+{"version":3,"file":"mock-ai.provider.js","sourceRoot":"","sources":["../../../../src/modules/ai/providers/mock-ai.provider.ts"],"names":[],"mappings":"AAOA,MAAM,OAAO,cAAc;IACzB,KAAK,CAAC,aAAa,CAAC,KAAyB;QAC3C,OAAO;YACL,OAAO,EAAE,YAAY;YACrB,QAAQ,EAAE,MAAM;YAChB,KAAK,EAAE,YAAY;SACpB,CAAC;IACJ,CAAC;CACF"}

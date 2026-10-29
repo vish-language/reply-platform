@@ -10,10 +10,8 @@ Enterprise AI SaaS Platform for Automated Customer Replies.
 - MySQL
 - Redis
 - BullMQ
-- Socket.IO
 - OpenAI
 - Docker
 
-## Status
 
-🚧 Under Development
+

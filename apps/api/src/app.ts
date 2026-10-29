@@ -50,4 +50,6 @@ app.use("/api/v1/billing", billingRoutes);
 app.use("/api/v1/invitations", invitationRoutes);
 app.use(errorMiddleware); // Error handling middleware . Its alwasys the last middleware in the stack
 
-export default app;
+app.listen(env.PORT, () =>{
+  console.log(`Server is running on port ${env.PORT}`);
+});
