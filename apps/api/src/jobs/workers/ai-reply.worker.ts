@@ -52,7 +52,6 @@ export const aiReplyWorker = new Worker<AIReplyJob>(
         comment.rating !== null && comment.rating !== undefined
           ? `Rating: ${comment.rating}/5`
           : null,
-
         `Review: ${comment.content}`,
       ]
         .filter(Boolean)
@@ -83,65 +82,28 @@ export const aiReplyWorker = new Worker<AIReplyJob>(
 
       const reply = await ReplyRepository.create({
         commentId: comment.id,
-
         content: generatedReply.content,
-
         generatedBy: generatedReply.provider,
-
         modelName: generatedReply.model,
       });
 
       console.log("STEP 5: Reply saved", reply.id);
 
       if (comment.googleReviewName) {
-        const subscription = await SubscriptionLimitService.canGenerateReply(
+        // Atomically claim the usage slot BEFORE publishing.
+        await UsageRepository.incrementAIReplies(
           comment.organizationId,
+          limit.limit,
         );
 
-        if (!subscription.allowed) {
-          await CommentRepository.updateStatus(comment.id, "FAILED");
-
-          throw new Error(
-            `AI reply limit reached ${subscription.used}/${subscription.limit}`,
-          );
-        }
-
-        const generatedReply = await aiService.generateReply({
-          organizationId: comment.organizationId,
-          comment: reviewContext,
+        await googleReviewProvider.publishReply({
+          googleReviewName: comment.googleReviewName,
+          replyContent: reply.content,
         });
 
-        console.log("STEP 4: AI reply generated");
+        await ReplyRepository.updateStatus(reply.id, "PUBLISHED");
 
-        const reply = await ReplyRepository.create({
-          commentId: comment.id,
-
-          content: generatedReply.content,
-
-          generatedBy: generatedReply.provider,
-
-          modelName: generatedReply.model,
-        });
-
-        console.log("STEP 5: Reply saved", reply.id);
-
-        if (comment.googleReviewName) {
-          // Atomically claim the usage slot BEFORE publishing.
-          await UsageRepository.incrementAIReplies(
-            comment.organizationId,
-            subscription.limit,
-          );
-
-          await googleReviewProvider.publishReply({
-            googleReviewName: comment.googleReviewName,
-            replyContent: reply.content,
-          });
-
-          await ReplyRepository.updateStatus(reply.id, "PUBLISHED");
-
-          console.log("Usage updated: AI reply count increased");
-        }
-
+        console.log("Google reply published");
         console.log("Usage updated: AI reply count increased");
       }
 
@@ -158,7 +120,6 @@ export const aiReplyWorker = new Worker<AIReplyJob>(
   },
   {
     connection: redis,
-
     concurrency: 5,
   },
 );

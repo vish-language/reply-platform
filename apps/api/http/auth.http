@@ -17,34 +17,34 @@ POST http://localhost:5000/api/v1/auth/login
 Content-Type: application/json
 
 {
-  "email": "priya@gmail.com",
-  "password": "Priya@123"
+  "email": "x-test@example.com",
+  "password": "xyz@1234!"
 }
 
 ### Get User Profile
 GET http://localhost:5000/api/v1/auth/me
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjbXQybGFycGgwMDAwZWdpOWtpeHc0Y3Q5Iiwib3JnYW5pemF0aW9uSWQiOiJjbXQybGFycHIwMDAxZWdpOTNzbjg4anI1IiwiaWF0IjoxNzg3NTA1ODAxLCJleHAiOjE3ODgxMTA2MDF9.JKFIuxgMio-b6RNcZW5FosgsxpOM0Wowow3tBq_tbtE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjbXZzbnNzbjEwMDAwZndpOXc5eTlpbmNiIiwib3JnYW5pemF0aW9uSWQiOiJjbXZzbnNzb3IwMDAxZndpOWN0cGYxdTRkIiwiaWF0IjoxNzkzMjI1MDc5LCJleHAiOjE3OTM4Mjk4Nzl9.p3AwuuvTIcUpByP5bzChNwixtXQN0ZKcMasuivizAsA
 
 ### Get Current Organization
 GET http://localhost:5000/api/v1/organization/current
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjbXNuMWRmNXQwMDBnd3dpOW1pYTBjb2ZpIiwiaWF0IjoxNzg2MzU1MjU1LCJleHAiOjE3ODY5NjAwNTV9.uolTCZhP6C4Sfj1HQH7_7gCZjElW8XkzyYoYoqptqu0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjbXZzbnNzbjEwMDAwZndpOXc5eTlpbmNiIiwib3JnYW5pemF0aW9uSWQiOiJjbXZzbnNzb3IwMDAxZndpOWN0cGYxdTRkIiwiaWF0IjoxNzkzMjI1MDc5LCJleHAiOjE3OTM4Mjk4Nzl9.p3AwuuvTIcUpByP5bzChNwixtXQN0ZKcMasuivizAsA
 
 
 
 ### Update Current Organization
 PATCH  http://localhost:5000/api/v1/organization/current
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjbXNpenB6N2YwMDAzZ2dpOTBqYmZ0aHhsIiwiaWF0IjoxNzg2MTMzNDE2LCJleHAiOjE3ODY3MzgyMTZ9.Au5hojkyBgtAFNald8kpHHVKRGL983Yeu-8QXIK_N1g
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjbXZzbnNzbjEwMDAwZndpOXc5eTlpbmNiIiwib3JnYW5pemF0aW9uSWQiOiJjbXZzbnNzb3IwMDAxZndpOWN0cGYxdTRkIiwiaWF0IjoxNzkzMjI1MDc5LCJleHAiOjE3OTM4Mjk4Nzl9.p3AwuuvTIcUpByP5bzChNwixtXQN0ZKcMasuivizAsA
 Content-Type: application/json
 
 {
-  "name": "sachin Paradise Hotel",
-  "isActive": true
+  "name": "vishal Paradise Hotel",
+  "isActive": false
 }
 
 ### post member
 
 POST http://localhost:5000/api/v1/members
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjbXNuMmZkeHQwMDAwNTBpOXVubXM0Z3hxIiwiaWF0IjoxNzg2MzU2Nzg4LCJleHAiOjE3ODY5NjE1ODh9.dN4BZx5L6IIhAdiJfsS7YctzsfwcbWNUC1RbDVXrP1Q
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjbXZzbnNzbjEwMDAwZndpOXc5eTlpbmNiIiwib3JnYW5pemF0aW9uSWQiOiJjbXZzbnNzb3IwMDAxZndpOWN0cGYxdTRkIiwiaWF0IjoxNzkzMjI1MDc5LCJleHAiOjE3OTM4Mjk4Nzl9.p3AwuuvTIcUpByP5bzChNwixtXQN0ZKcMasuivizAsA
 Content-Type: application/json
 
 {
@@ -54,7 +54,7 @@ Content-Type: application/json
 
 ### get members
 GET http://localhost:5000/api/v1/members
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjbXNrcTNpcDUwMDAzdDRpOXZvbjVocWVmIiwiaWF0IjoxNzg2MjE0Nzg5LCJleHAiOjE3ODY4MTk1ODl9.T1MQP7FlcARXLszlUMowNrlZ9O85hWsEXVUgNBG974Y
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjbXZzbnNzbjEwMDAwZndpOXc5eTlpbmNiIiwib3JnYW5pemF0aW9uSWQiOiJjbXZzbnNzb3IwMDAxZndpOWN0cGYxdTRkIiwiaWF0IjoxNzkzMjI1MDc5LCJleHAiOjE3OTM4Mjk4Nzl9.p3AwuuvTIcUpByP5bzChNwixtXQN0ZKcMasuivizAsA
 
 ### update member role
 PATCH http://localhost:5000/api/v1/members/cmskqg5f20009t4i92s5hapmt
@@ -89,7 +89,7 @@ Content-Type: application/json
 ### 4. Create Comment With AI
 
 POST http://localhost:5000/api/v1/comments
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjbXQybGFycGgwMDAwZWdpOWtpeHc0Y3Q5Iiwib3JnYW5pemF0aW9uSWQiOiJjbXQybGFycHIwMDAxZWdpOTNzbjg4anI1IiwiaWF0IjoxNzg3NTEwODgwLCJleHAiOjE3ODgxMTU2ODB9.9GCF7pWCzcCrFmZgknmdBtxbNA_xNuJFjOxTTQfpaO4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjbXZzbnNzbjEwMDAwZndpOXc5eTlpbmNiIiwib3JnYW5pemF0aW9uSWQiOiJjbXZzbnNzb3IwMDAxZndpOWN0cGYxdTRkIiwiaWF0IjoxNzkzMjI1MDc5LCJleHAiOjE3OTM4Mjk4Nzl9.p3AwuuvTIcUpByP5bzChNwixtXQN0ZKcMasuivizAsA
 Content-Type: application/json
 
 {

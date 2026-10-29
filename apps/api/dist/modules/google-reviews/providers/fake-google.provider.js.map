@@ -1,0 +1,1 @@
+{"version":3,"file":"fake-google.provider.js","sourceRoot":"","sources":["../../../../src/modules/google-reviews/providers/fake-google.provider.ts"],"names":[],"mappings":"AAUA,MAAM,OAAO,kBAAkB;IAC7B,MAAM,CAAC,KAAK,CAAC,aAAa,CAAC,OAA4B;QACrD,OAAO;YACL,QAAQ,EAAE,aAAa;YACvB,MAAM,EAAE,OAAO;YACf,UAAU,EAAE,IAAI,IAAI,EAAE;SACvB,CAAC;IACJ,CAAC;CACF"}
